@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -101,16 +102,26 @@ public class App {
                     System.out.print("\nEnter file name to save tasks: ");
                     String nameFile = scanner.nextLine();
                     File file = new File(nameFile + ".csv");
-                    managementTask.saveTaskFile(file);  // Save tasks to a file
-                    System.out.printf("\nTasks saved to %s.csv\n", nameFile);
-                    System.out.println("------------------------------------------------");
+                    try{
+                        if(file.createNewFile()){
+                            managementTask.saveTaskFile(file);  // Save tasks to a file
+                            System.out.printf("\nTasks saved to %s.csv\n", nameFile);
+                            System.out.println("------------------------------------------------");
+                        }
+                        break;
+                    }catch(IOException e){
+                        System.out.println("Could not create this file");
+                    }
+                    
                     break;
 
                 case 6:
                     System.out.println("------------------------------------------------");
                     System.out.println(RED+"\nGoodbye! Have a productive day!\n"+RESET);
                     System.out.println("------------------------------------------------");
+                    scanner.close();
                     System.exit(0);  
+                    
                     break;
 
                 default:
