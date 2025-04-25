@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -16,6 +18,8 @@ public class App {
         System.out.println(RED +"To-Do List Manager"+RESET);  
         System.out.println("-------------------------------");
 
+    
+    
         // Create the task manager object
         ManagementTask managementTask = new ManagementTask();
 
@@ -93,7 +97,7 @@ public class App {
                     System.out.print("\nEnter the task number to delete: ");
                     String inputtoDelete = scanner.nextLine();
                     int numberTask = Integer.parseInt(inputtoDelete);
-                    managementTask.deleteTask(numberTask);  // Delete the specified task
+                     managementTask.deleteTask(numberTask);  // Delete the specified task
                     System.out.println("------------------------------------------------");
                     break;
 
@@ -104,7 +108,7 @@ public class App {
                     File file = new File(nameFile + ".csv");
                     try{
                         if(file.createNewFile()){
-                            managementTask.saveTaskFile(file);  // Save tasks to a file
+                           managementTask.saveTaskFile(file);  // Save tasks to a file
                             System.out.printf("\nTasks saved to %s.csv\n", nameFile);
                             System.out.println("------------------------------------------------");
                         }

@@ -5,7 +5,7 @@ import java.time.LocalDate;
  * Each task has a description, a due date, and a unique identifier.
  */
 public class Task {
-
+//capire come rendere persistenti i dati
     
     String description;
     
